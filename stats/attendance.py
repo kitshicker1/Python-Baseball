@@ -1,3 +1,5 @@
+from cProfile import label
+from turtle import color
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -8,5 +10,10 @@ attendance = games.loc[(games['type'] == 'info') & (games['multi2'] ==
 attendance.columns = ['year', 'attendance']
 attendance.loc[:, 'attendance'] = pd.to_numeric(attendance.loc[:, 'attendance'])
 attendance.plot(x='year', y='attendance', figsize=(15, 7), kind='bar')
-plt.xlabel(x-axis='Year', y-axis='Attendance')
+
+plt.xlabel(x='Year')
+plt.ylabel(y='Attendance')
+
+plt.axhline(y=attendance['attendance'].mean(), label='Mean', linestyle='--', color='green')
+
 plt.show()
